@@ -20,7 +20,8 @@ namespace System
 
         public Guid()
         {
-            _data = new int[4]; // All zeros
+            // All zeros
+            _data = new int[4]; 
         }
 
         /// <summary>
@@ -324,7 +325,8 @@ namespace System
         /// <returns>The hash code for this instance.</returns>
         public override int GetHashCode()
         {
-            _data ??= new int[4]; // Initialize if null (treat as Empty)
+            // Initialize if null (treat as Empty)
+            _data ??= new int[4]; 
             return _data[0] ^ _data[1] ^ _data[2] ^ _data[3];
         }
 
