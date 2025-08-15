@@ -108,7 +108,7 @@ namespace System
 #pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one 
             if (b.Length != 16)
             {
-                throw new ArgumentException("Byte array must be 16 bytes long.", nameof(b));
+                throw new ArgumentException();
             }
 #pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one 
 
@@ -165,8 +165,15 @@ namespace System
         /// <exception cref="ArgumentException"><paramref name="value"/> is not a <see cref="Guid"/>.</exception>
         public int CompareTo(object value)
         {
-            if (value == null) return 1;
-            if (value is not Guid other) throw new ArgumentException("Object must be of type Guid.");
+            if (value == null)
+            {
+                return 1;
+
+            }
+            if (value is not Guid other)
+            {
+                throw new ArgumentException();
+            }
 
             return CompareTo(other);
         }
@@ -205,7 +212,8 @@ namespace System
         /// </remarks>
         public byte[] ToByteArray()
         {
-            _data ??= new int[4]; // Initialize if null (treat as Empty)
+            // Initialize if null (treat as Empty)
+            _data ??= new int[4]; 
 
             byte[] buffer = new byte[16];
 
@@ -449,8 +457,6 @@ namespace System
 
             return true;
         }
-
-
 
         /// <summary>
         /// Converts a hex sub-string to a long, while incrementing the parsePos.
